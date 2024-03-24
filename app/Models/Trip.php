@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Trip extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'destination',
         'startDate',
@@ -18,7 +18,9 @@ class Trip extends Model
         'vehicle',
         'image_link',
         'trip_link',
-        'name'
+        'name',
+        'max_travelers',
+        'min_travelers'
     ];
 
     /**

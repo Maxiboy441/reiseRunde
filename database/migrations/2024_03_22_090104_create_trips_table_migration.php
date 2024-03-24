@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('vehicle', 255);
             $table->text('image_link');
             $table->text('trip_link');
+            $table->integer('max_travelers');
+            $table->integer('min_travelers');
             $table->timestamps();
         });
     }

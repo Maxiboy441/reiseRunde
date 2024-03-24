@@ -3,7 +3,8 @@
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     @foreach ($trips as $trip)
-        <a href="{{ route('trip.show', $trip->id) }}" class="block rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+        <a href="{{ route('trip.show', $trip->id) }}"
+           class="block rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
             <div>
                 <img src="{{ $trip->image_link }}" alt="{{ $trip->name }}" class="w-full h-64 object-cover">
             </div>
@@ -15,10 +16,14 @@
                     <li class="text-gray-600 mr-2">
                         <i class="fas fa-user"></i>
                         {{-- TODO: Add Name --}}
-
+                        Testname
                     </li>
                     <li class="text-gray-600 mr-2">
                         <i class="fas fa-flag"></i> {{ $trip->destination }}
+                    </li>
+                    <li class="text-gray-600 mr-2">
+                        <i class="fas fa-user"></i>
+                        {{$trip->min_travelers}}/{{$trip->users->count()}}/{{$trip->max_travelers}}
                     </li>
                     <li class="text-gray-600">
                         @switch($trip->vehicle)

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TripController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $trips = Trip::all();
 
@@ -23,5 +23,10 @@ class TripController extends Controller
 
         return view('trip', compact('trip'));
 
+    }
+
+    public function create()
+    {
+        return view('create-trip');
     }
 }

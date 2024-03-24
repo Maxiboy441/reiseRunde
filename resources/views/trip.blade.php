@@ -7,15 +7,13 @@
     <div class="bg-white shadow-md rounded-lg">
         <img src="{{$trip->image_link}}" alt="Trip Image"
              class="w-full h-full object-cover rounded-lg mb-4 clip-path: inset(50% 0 0 0);">
-        {{-- TODO: Crop Image --}}
         <div class="flex">
-            <div class="w-1/4 px-4 py-4 bg-blue-100 border-l border-gray-200">
+            <div class="w-1/4 px-4 py-4 bg-blue-100 border-l border-gray-200 rounded-3xl ml-4 mb-4">
                 <h3 class="font-bold">Quick Check</h3>
                 <ul class="list-disc pl-4 space-y-2">
                     <li><i class="fas fa-flag"></i> {{$trip->destination}}</li>
-                    {{-- TODO: Datum Formatieren --}}
-                    <li>Start: {{$trip->startDate}}</li>
-                    <li>Ende: {{$trip->endDate}}</li>
+                    <li>Start: {{$trip->startDate->format('d F Y')}}</li>
+                    <li>Ende: {{$trip->endDate->format('d F Y')}}</li>
                     <li>Exakt: @if($trip->timespan)
                             Nein
                         @else
@@ -40,15 +38,15 @@
                                 <i class="fas fa-car"></i>
                         @endswitch
                     </li>
+                    <li>Min: {{$trip->min_travelers}}</li>
+                    <li>Max: {{$trip->max_travelers}}</li>
                 </ul>
             </div>
             <div class="w-3/4 px-4 py-4">
                 <div class="flex justify-between border-b border-gray-200 pb-4" id="head">
-                    {{-- TODO: UserVerlinken --}}
                     <a href="account" class="hover:underline">Username</a>
-                    {{-- TODO: Datum Formatieren --}}
-                    <p class="hover:underline">Erstellt: {{$trip->created_at}}</p>
-                    <p class="hover:underline">Letztes update: {{$trip->updated_at}}</p>
+                    <p class="hover:underline">Erstellt: {{$trip->created_at->format('d F Y')}}</p>
+                    <p class="hover:underline">Letztes update: {{$trip->updated_at->format('d F Y')}}</p>
                 </div>
                 <div id="description">
                     <h3>Beschreibung</h3>
@@ -58,7 +56,6 @@
                 </div>
                 <div id="map">
                     {{-- TODO: Maps einbinden mit dem geplanten trip --}}
-
                     <a href="{{$trip->trip_link}}">{{$trip->trip_link}}</a>
                 </div>
             </div>

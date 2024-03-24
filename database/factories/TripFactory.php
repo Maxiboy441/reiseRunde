@@ -19,6 +19,10 @@ class TripFactory extends Factory
         $startDate = $this->faker->dateTimeBetween('now', '+2 years');
         $endDate = $this->faker->dateTimeBetween($startDate, '+2 years');
 
+        $minTavelers = $this->faker->numberBetween(1,5);
+        $maxTavelers = $minTavelers + $this->faker->numberBetween(1,5);
+
+
         return [
             'destination' => $this->faker->city,
             'startDate' => $startDate,
@@ -28,7 +32,10 @@ class TripFactory extends Factory
             'vehicle' => $this->faker->randomElement(['car', 'plane', 'train', 'motorbike']),
             'image_link' => $this->faker->imageUrl(),
             'trip_link' => $this->faker->url(),
-            'name' => $this->faker->word
+            'name' => $this->faker->city,
+            'min_travelers' => $minTavelers,
+            'max_travelers' => $maxTavelers
+
         ];
     }
 }
