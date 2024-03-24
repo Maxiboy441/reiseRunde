@@ -1,0 +1,15 @@
+[90m= [39m[34;4mApp\Models\Trip[39;24m {#5433
+    [34mid[39m: [35m2[39m,
+    [34mname[39m: "[32mSterling Senger I[39m",
+    [34mdestination[39m: "[32mAbeshire[39m",
+    [34mstartDate[39m: "[32m2025-06-05[39m",
+    [34mendDate[39m: "[32m2025-10-17[39m",
+    [34mtimespan[39m: [35m0[39m,
+    [34mdescription[39m: "[32mQuia doloribus alias in eius assumenda. Laboriosam nesciunt dignissimos aliquam id fuga. Dolorum voluptatum voluptas est ullam. Rerum repellendus velit alias recusandae maiores voluptas.[39m",
+    [34mvehicle[39m: "[32mCar[39m",
+    [34mimage_link[39m: "[32mhttps://via.placeholder.com/640x480.png/008855?text=recusandae[39m",
+    [34mtrip_link[39m: "[32mhttp://www.kuhn.info/ut-optio-unde-assumenda-aliquam-adipisci[39m",
+    [34mcreated_at[39m: "[32m2024-03-22 13:47:55[39m",
+    [34mupdated_at[39m: "[32m2024-03-22 13:47:55[39m",
+  }
+

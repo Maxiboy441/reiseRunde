@@ -1,0 +1,56 @@
+@startuml
+
+entity Users {
+    + userId [PK]
+    --
+    * username : string
+    * email : string
+    ...
+}
+
+entity Trips {
+    + id [PK]
+    --
+    + destination : VARCHAR(255)
+    + startDate : date
+    + endDate : date
+    * timespan: bool
+    * description: text
+    + vehicle: VARCHAR(255)
+    + image_link: text
+}
+
+entity Countries {
+    + id [PK]
+    --
+    * name : VARCHAR(255)
+    * continent : VARCHAR(255)
+}
+
+entity User_has_Trip {
+    + userId [FK]
+    + id [FK]
+    --
+    * type : VARCHAR(255)
+    * status : VARCHAR(255)
+}
+
+entity Trip_has_Countries {
+    + id [FK]
+    + id [FK]
+}
+
+entity User_has_Friends {
+    + userId [FK]
+    + userId [FK]
+    --
+    * status: VARCHAR(255)
+}
+
+Users ||--o{ User_has_Trip
+Trips ||--o{ User_has_Trip
+Trips ||--o{ Trip_has_Countries
+Countries ||--o{ Trip_has_Countries
+Users ||--o{ User_has_Friends
+
+@enduml
