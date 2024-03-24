@@ -1,66 +1,35 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# [WIP: The content of this README is only a rough version/dummy]
+# ReiseRunde
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Welcome to ReiseRunde, your go-to platform for exploring the world, connecting with fellow travelers, and planning unforgettable adventures.
 
-## About Laravel
+## Table of Contents
+- [About](#about)
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [License](#license)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## About
+ReiseRunde is a travel social platform designed to connect travelers with similar interests, discover exciting destinations, and plan memorable adventures. Whether you're an experienced globetrotter or a newbie explorer, ReiseRunde provides you with the tools and resources to turn your travel dreams into reality.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
+- **Connect with Travelers:** Find travel companions who share your interests and preferences. Join groups, chat with fellow travelers, and expand your travel network.
+- **Discover Destinations:** Explore a vast selection of destinations worldwide. Discover hidden gems, immerse yourself in local cultures, and effortlessly plan your itinerary.
+- **Plan Your Journey:** Utilize our comprehensive planning tools to design your dream vacation. Organize your itinerary, share travel notes, and book flights and accommodations.
+- **Experience Adventures:** Go beyond the typical tourist traps and uncover unique experiences that will truly make your journey unforgettable. From remote adventures to impressive cultural encounters, ReiseRunde connects you with adventures that ignite your wanderlust.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## How It Works
+1. **Create an Account:** Register for free and create your ReiseRunde profile. Share your travel interests and preferences.
+2. **Discover Destinations:** Explore a vast selection of destinations worldwide. Find hidden treasures, immerse yourself in local cultures, and plan your route with ease.
+3. **Find Travel Companions:** Invite people to join you on a journey. Connect with like-minded travelers and embark on adventures together.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Getting Started
+To get started with ReiseRunde, simply visit [our website](https://www.reiserunde.com) and sign up for an account. Once registered, you can start exploring destinations, connecting with fellow travelers, and planning your next adventure.
 
 ## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+We welcome contributions from the community to improve ReiseRunde. Whether it's fixing bugs, adding new features, or enhancing the user experience, we appreciate all contributions. Please refer to our [Contribution Guidelines](CONTRIBUTING.md) for more information on how to contribute.
 
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the [MIT License](LICENSE).
