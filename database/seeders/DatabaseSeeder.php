@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             TripSeeder::class,
             CountrySeeder::class,
             TripHasCountriesSeeder::class,
-            UserHasFriendsSeeder::class,
             UserHasTripSeeder::class
         ]);
     }

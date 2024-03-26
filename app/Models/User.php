@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -45,19 +44,6 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-
-    public function hasFriendRequest(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'user_has_friends', 'user_id', 'friendId')
-            ->withPivot('status');
-    }
-
-    public function sendFriendRequest(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'user_has_friends', 'friendId', 'user_id')
-            ->withPivot('status');
     }
 
 }
