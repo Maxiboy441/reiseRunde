@@ -1,4 +1,4 @@
-<header class="bg-white shadow-md">
+<header class="bg-white shadow-md h-24">
     <div class="container mx-auto px-4 py-5 flex justify-between items-center">
         <a href="{{route('welcome')}}"><h1 class="text-xl font-bold w-max">ReiseRunde</h1> </a>
         <nav class="flex space-x-4 justify-center @auth lg:ml-20 @endauth ">
