@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <x-head/>
 <x-nav-bar/>
 <body class="bg-gray-100">
