@@ -52,7 +52,7 @@
         </a>
     @endforeach
     <a href="{{route('trip.create')}}"
-       class="fixed bottom-10 right-10 rounded-full bg-blue-500 hover:bg-blue-700 shadow-md px-4 py-2 text-white font-bold">
+       class="fixed bottom-10 right-10 px-4 py-2 rounded-3xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         Trip erstellen
     </a>
 </div>
