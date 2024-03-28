@@ -45,7 +45,9 @@
                     </select>
                 </div>
                 <div class="mb-4">
-                    <label for="image_link" class="block text-gray-700 font-bold mb-2">Trip Image</label>
+                    {{--TODO: Use cloudanary or something like that--}}
+                    {{--TODO: Maybe add a tutorial how to copy good image urls--}}
+                    <label for="image_link" class="block text-gray-700 font-bold mb-2">Trip Image (jpg/png/... for good resolution)</label>
                     <input type="text" name="image_link" id="image_link" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                 </div>
                 <div class="mb-4">
