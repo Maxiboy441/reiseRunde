@@ -113,7 +113,6 @@
 
     function toggleTable(tableId) {
         tables.forEach(({id, btn, container, searchInput, tableBody}) => {
-            const table = document.getElementById(id);
             container.classList.toggle('hidden', id !== tableId);
             btn.classList.toggle('bg-blue-500', id === tableId);
             btn.classList.toggle('text-white', id === tableId);
