@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "142e828767d8c44f50cc94092eef61bf",
+    "content-hash": "029437e2e311f9a8597c0b1b824bded0",
     "packages": [
         {
             "name": "brick/math",
@@ -3178,6 +3178,66 @@
             "time": "2023-11-08T05:53:05+00:00"
         },
         {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.16.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "ddf678e78d7f8b17e5cdd99c0c3413a4a6592e53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/ddf678e78d7f8b17e5cdd99c0c3413a4a6592e53",
+                "reference": "ddf678e78d7f8b17e5cdd99c0c3413a4a6592e53",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.28|^10.0|^11.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.7|^8.0",
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.5.24",
+                "spatie/pest-plugin-test-time": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.16.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-20T07:29:11+00:00"
+        },
+        {
             "name": "symfony/clock",
             "version": "v7.0.5",
             "source": {
@@ -5741,6 +5801,67 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "wongdoody/php-uml-crafter",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oddity-agency/php-uml-crafter.git",
+                "reference": "ef505347dfca4c3058e2535bbf196743c5375e9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oddity-agency/php-uml-crafter/zipball/ef505347dfca4c3058e2535bbf196743c5375e9c",
+                "reference": "ef505347dfca4c3058e2535bbf196743c5375e9c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.14.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "WongDoody\\PhpUmlCrafter\\PhpUmlCrafterServiceProvider"
+                    ],
+                    "aliases": {
+                        "PhpUmlCrafter": "WongDoody\\PhpUmlCrafter\\Facades\\PhpUmlCrafter"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WongDoody\\PhpUmlCrafter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "WongDoody GmbH",
+                    "email": "info@odt.net"
+                }
+            ],
+            "description": "This package generates uml from php code",
+            "homepage": "https://github.com/oddity-agency/php-uml-crafter",
+            "keywords": [
+                "WongDoody",
+                "laravel",
+                "php-uml-crafter"
+            ],
+            "support": {
+                "issues": "https://github.com/oddity-agency/php-uml-crafter/issues",
+                "source": "https://github.com/oddity-agency/php-uml-crafter/tree/0.1.0"
+            },
+            "time": "2024-02-14T14:00:49+00:00"
         }
     ],
     "packages-dev": [

@@ -24,12 +24,12 @@
                 @foreach($users as $aUser)
                     @if($aUser->id !== Auth::user()->id)
                         <tr class="hover:bg-gray-100">
+                            <td class="px-4 py-2">
+                                {{$aUser->name}}
+                            </td>
                             <td class="px-4 py-2 text-right whitespace-nowrap">
                                 <x-button type="" text="Add"
                                           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"/>
-                            </td>
-                            <td class="px-4 py-2">
-                                {{$aUser->name}}
                             </td>
                         </tr>
                     @endif
@@ -54,6 +54,9 @@
                 <tbody>
                 <tr>
                     <td class="px-4 py-2 border border-gray-300">Data 2.1</td>
+                    <td class="px-4 py-2 border border-gray-300">Data 2.2</td>
+                </tr><tr>
+                    <td class="px-4 py-2 border border-gray-300">Data 2.2</td>
                     <td class="px-4 py-2 border border-gray-300">Data 2.2</td>
                 </tr>
                 </tbody>
