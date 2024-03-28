@@ -40,17 +40,9 @@ entity Trip_has_Countries {
     + id [FK]
 }
 
-entity User_has_Friends {
-    + userId [FK]
-    + userId [FK]
-    --
-    * status: VARCHAR(255)
-}
-
 Users ||--o{ User_has_Trip
 Trips ||--o{ User_has_Trip
 Trips ||--o{ Trip_has_Countries
 Countries ||--o{ Trip_has_Countries
-Users ||--o{ User_has_Friends
 
 @enduml

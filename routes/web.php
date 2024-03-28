@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
@@ -22,5 +23,8 @@ Route::middleware('auth')->group(function () {
 Route::get('trips', [TripController::class, 'index'])->name('trip.index')->middleware('auth');
 Route::get('trip/{trip}', [TripController::class, 'show'])->name('trip.show');
 Route::get('trip', [TripController::class, 'create'])->name('trip.create');
+
+
+Route::get('users', [FriendsController::class, 'index'])->name('user.index');
 
 require __DIR__.'/auth.php';

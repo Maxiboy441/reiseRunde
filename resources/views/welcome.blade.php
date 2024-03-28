@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="{{ str('app.locale') }}">
 <x-head/>
 
 <body class="font-sans antialiased bg-gray-100">
@@ -7,7 +6,6 @@
 <x-nav-bar/>
 
 <main class="flex flex-col justify-center items-center">
-
     <section class="hero bg-cover bg-center py-24 w-full"
              style="background-image: url('https://images.unsplash.com/photo-1503614472-8c93d56e92ce?q=80&w=1000&auto-format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D')">
         <div class="container mx-auto px-4 text-center">
