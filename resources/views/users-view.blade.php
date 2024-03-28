@@ -1,5 +1,4 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
-    <!DOCTYPE html>
 <x-head/>
 <x-nav-bar/>
 <body class="font-sans antialiased">
