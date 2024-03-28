@@ -51,6 +51,10 @@
             </div>
         </a>
     @endforeach
+    <a href="{{route('trip.create')}}"
+       class="fixed bottom-10 right-10 rounded-full bg-blue-500 hover:bg-blue-700 shadow-md px-4 py-2 text-white font-bold">
+        Trip erstellen
+    </a>
 </div>
 
 <x-footer/>
