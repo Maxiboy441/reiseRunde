@@ -21,8 +21,8 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('trips', [TripController::class, 'index'])->name('trip.index')->middleware('auth');
-Route::get('trip/{trip}', [TripController::class, 'show'])->name('trip.show');
-Route::get('trip', [TripController::class, 'create'])->name('trip.create');
+Route::get('trip/{trip}', [TripController::class, 'show'])->name('trip.show')->middleware('auth');;
+Route::get('trip', [TripController::class, 'create'])->name('trip.create')->middleware('auth');;
 
 
 Route::get('users', [FriendsController::class, 'index'])->name('user.index');

@@ -1,7 +1,7 @@
 <x-head/>
 <x-nav-bar/>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
     @foreach ($trips as $trip)
         <a href="{{ route('trip.show', $trip->id) }}"
            class="block rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
