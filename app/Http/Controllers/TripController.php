@@ -13,7 +13,14 @@ class TripController extends Controller
 {
     public function index()
     {
-        $trips = Trip::all();
+        $user_id = Auth::id();
+
+        $trips = Trip::whereDoesntHave('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->whereHas('users', function ($query) {
+            $query->where('status', 'waiting');
+        })->get();
+
 
         return view('trips', compact('trips'));
     }
@@ -28,12 +35,57 @@ class TripController extends Controller
 
     }
 
+    public function indexMine()
+    {
+        $user_id = Auth::id();
+        $openTripOwner = Trip::whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id)
+                ->where('type', 'owner')
+                ->where('status', 'waiting');
+        })->get();
+
+        $closedTripOwner = Trip::whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id)
+                ->where('type', 'owner')
+                ->where('status', 'closed');
+        })->get();
+
+        $doneTripOwner = Trip::whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id)
+                ->where('type', 'owner')
+                ->where('status', 'done');
+        })->get();
+
+        $openJoinedTrip = Trip::whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id)
+                ->where('type', '!=', 'owner')
+                ->where('status', 'waiting');
+        })->get();
+
+        $closedJoinedTrip = Trip::whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id)
+                ->where('type', '!=', 'owner')
+                ->where('status', 'closed');
+        })->get();
+
+        $doneJoinedTrip = Trip::whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id)
+                ->where('type', '!=', 'owner')
+                ->where('status', 'done');
+        })->get();
+
+
+        return view('my-trips', compact('openTripOwner','closedTripOwner','doneTripOwner','openJoinedTrip', 'closedJoinedTrip', 'doneJoinedTrip'));
+
+    }
+
     public function create()
     {
         return view('create-trip');
     }
 
-    public function store(TripPostRequest $request){
+    public function store(TripPostRequest $request)
+    {
         $validated = $request;
 
         if (!$validated['duration_in_days']) {
@@ -43,7 +95,7 @@ class TripController extends Controller
         }
 
         $trip = Trip::create($validated->toArray());
-        
+
         DB::table('user_has_trip')->insert([
             'user_id' => Auth::id(),
             'trip_id' => $trip->id,

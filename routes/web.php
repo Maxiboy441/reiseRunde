@@ -24,6 +24,8 @@ Route::get('/trips', [TripController::class, 'index'])->name('trip.index')->midd
 Route::get('/trip/{trip}', [TripController::class, 'show'])->name('trip.show')->middleware('auth');
 Route::get('/trip', [TripController::class, 'create'])->name('trip.create')->middleware('auth');
 Route::post('/trip', [TripController::class, 'store'])->name('trips.store')->middleware('auth');
+Route::get('/mytrips', [TripController::class, 'indexMine'])->name('trip.mytrips')->middleware('auth');
+
 
 
 Route::get('users', [FriendsController::class, 'index'])->name('user.index')->middleware('auth');

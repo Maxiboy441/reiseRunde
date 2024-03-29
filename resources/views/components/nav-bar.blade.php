@@ -10,7 +10,7 @@
                class="text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                 Nutzer
             </a>
-            <a href="#"
+            <a href="{{route('trip.mytrips')}}"
                class="text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                 Meine Trips
             </a>
