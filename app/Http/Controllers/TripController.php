@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TripPostRequest;
-use App\Http\Requests\TripStoreRequest;
 use App\Models\Trip;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class TripController extends Controller
 {
@@ -19,7 +18,6 @@ class TripController extends Controller
 
     public function show(Trip $trip)
     {
-        //$this->authorize('view', $association);
 
         $trip = Trip::whereId($trip->id)->first();
 
@@ -34,14 +32,15 @@ class TripController extends Controller
     }
 
     public function store(TripPostRequest $request){
-        $validated = $request->validated();
+        $validated = $request;
 
-        dd('test');
         if (!$validated['duration_in_days']) {
-            $validated['duration_in_days'] = $validated['endDate']->diffInDays($validated['startDate']) + 1;
+            $carbonDate1 = Carbon::parse($validated['startDate']);
+            $carbonDate2 = Carbon::parse($validated['endDate']);
+            $validated['duration_in_days'] = $carbonDate1->diffInDays($carbonDate2) + 1;
         }
-        $trip = new Trip($validated);
-        $trip->save();
+
+        Trip::create($validated->toArray());
 
         return redirect('/trips')->with('success', 'Trip created successfully!');
     }

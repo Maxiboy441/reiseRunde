@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <x-head/>
 <x-nav-bar/>
 <body class="bg-gray-100">
@@ -29,7 +27,7 @@
                 <div class="mb-4">
                     <label for="timespan" class="block text-gray-700 font-bold mb-2">
                         <span class="mr-2">Timespan</span>
-                        <input type="checkbox" name="timespan" id="timespan" class="align-middle" @change="toggleDurationField">
+                        <input type="checkbox" name="timespan" id="timespan" class="align-middle" onchange="toggleTimespan()" value="0">
                     </label>
                 </div>
                 <div class="mb-4" id="durationField" style="display: none;">
@@ -66,143 +64,25 @@
                     <label for="min_travelers" class="block text-gray-700 font-bold mb-2">Minimum Travelers</label>
                     <input type="number" name="min_travelers" id="min_travelers" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required min="1">
                 </div>
-                <button type="submit">Test</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Create Trip
+                </button>
             </form>
         </div>
     </div>
 </main>
 
 <script>
-    const form = document.getElementById('tripForm');
-    const durationField = document.getElementById('durationField');
-    const timespanCheckbox = document.getElementById('timespan');
-
-    function toggleDurationField() {
-        durationField.style.display = this.checked ? 'block' : 'none';
-    }
-
-    function validateForm(event) {
-        event.preventDefault(); // Prevent form submission
-
-        const requiredFields = form.querySelectorAll('input[required], textarea[required], select[required]');
-        const missingFields = [...requiredFields].filter(field => field.value.trim() === '');
-
-        const startDate = new Date(form.startDate.value);
-        const endDate = new Date(form.endDate.value);
-        const minTravelers = parseInt(form.min_travelers.value);
-        const maxTravelers = parseInt(form.max_travelers.value);
-
+    function toggleTimespan() {
+        const timespanCheckbox = document.getElementById('timespan');
+        const durationField = document.getElementById('durationField');
         if (timespanCheckbox.checked) {
-            const duration = parseInt(form.duration.value);
-            if (isNaN(duration) || duration < 1) {
-                displayNotification('Please enter a valid duration in days.');
-                return;
-            }
+            durationField.style.display = 'block';
+            timespanCheckbox.value = 1;
+        } else {
+            durationField.style.display = 'none';
+            timespanCheckbox.value = 0;
         }
-
-        if (endDate < startDate) {
-            displayNotification('The end date must be after the start date.');
-            return;
-        }
-
-        if (minTravelers > maxTravelers) {
-            displayNotification('The minimum number of travelers must be less than or equal to the maximum number of travelers.');
-            return;
-        }
-
-        if (missingFields.length > 0) {
-            const fieldNames = missingFields.map(field => field.labels[0].textContent.trim());
-            displayNotification(`Please fill out the following fields: ${fieldNames.join(', ')}`);
-            return;
-        }
-
-        // Add the CSRF token to the form data
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        const formData = new FormData(form);
-        formData.append('_token', csrfToken);
-
-        // Submit the form
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(response => {
-                if (response.ok) {
-                    // Handle successful form submission
-                    console.log('Form submitted successfully');
-                } else {
-                    // Handle form submission error
-                    console.error('Form submission failed');
-                }
-            })
-            .catch(error => {
-                console.error('An error occurred:', error);
-            });
-    }function validateForm(event) {
-        event.preventDefault(); // Prevent form submission
-
-        const requiredFields = form.querySelectorAll('input[required], textarea[required], select[required]');
-        const missingFields = [...requiredFields].filter(field => field.value.trim() === '');
-
-        const startDate = new Date(form.startDate.value);
-        const endDate = new Date(form.endDate.value);
-        const minTravelers = parseInt(form.min_travelers.value);
-        const maxTravelers = parseInt(form.max_travelers.value);
-
-        if (timespanCheckbox.checked) {
-            const duration = parseInt(form.duration.value);
-            if (isNaN(duration) || duration < 1) {
-                displayNotification('Please enter a valid duration in days.');
-                return;
-            }
-        }
-
-        if (endDate < startDate) {
-            displayNotification('The end date must be after the start date.');
-            return;
-        }
-
-        if (minTravelers > maxTravelers) {
-            displayNotification('The minimum number of travelers must be less than or equal to the maximum number of travelers.');
-            return;
-        }
-
-        if (missingFields.length > 0) {
-            const fieldNames = missingFields.map(field => field.labels[0].textContent.trim());
-            displayNotification(`Please fill out the following fields: ${fieldNames.join(', ')}`);
-            return;
-        }
-
-        // Submit the form
-        fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-        })
-            .then(response => {
-                if (response.ok) {
-                    // Handle successful form submission
-                    console.log('Form submitted successfully');
-                } else {
-                    // Handle form submission error
-                    console.error('Form submission failed');
-                }
-            })
-            .catch(error => {
-                console.error('An error occurred:', error);
-            });
     }
-
-
-    function displayNotification(message) {
-        const notificationElement = document.getElementById('notification');
-        notificationElement.textContent = message;
-        notificationElement.classList.remove('hidden');
-        setTimeout(() => notificationElement.classList.add('hidden'), 5000);
-    }
-
-    form.addEventListener('submit', validateForm);
-    timespanCheckbox.addEventListener('change', toggleDurationField);
-    toggleDurationField.call(timespanCheckbox); // Initialize duration field visibility
 </script>
 </body>
-</html>
