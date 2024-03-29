@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -13,6 +14,7 @@ class TripFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
+     * @throws \Exception
      */
     public function definition()
     {
@@ -33,20 +35,33 @@ class TripFactory extends Factory
             'https://img.welt.de/img/mediathek/reportage/sport/mobile244674986/1071350807-ci16x9-w1200/RXXL-Megahotels-Das-neue-Wahrzeichen-Dohas.jpg'
         ];
 
+        $timespan = $this->faker->boolean;
+
+        if(!$timespan){
+            $carbonDate1 = Carbon::parse($startDate);
+            $carbonDate2 = Carbon::parse($endDate);
+            $duration = $carbonDate1->diffInDays($carbonDate2) - random_int(1,5);
+        }
+        else{
+            $carbonDate1 = Carbon::parse($startDate);
+            $carbonDate2 = Carbon::parse($endDate);
+            $duration = $carbonDate1->diffInDays($carbonDate2);
+        }
+
 
         return [
             'destination' => $this->faker->city,
             'startDate' => $startDate,
             'endDate' => $endDate,
-            'timespan' => $this->faker->boolean,
+            'timespan' => $timespan,
             'description' => $this->faker->paragraph,
             'vehicle' => $this->faker->randomElement(['car', 'plane', 'train', 'motorbike']),
             'image_link' => $this->faker->randomElement($seederImages),
             'trip_link' => $this->faker->url(),
             'name' => $this->faker->city,
             'min_travelers' => $minTavelers,
-            'max_travelers' => $maxTavelers
-
+            'max_travelers' => $maxTavelers,
+            'duration_in_days' => $duration
         ];
     }
 }

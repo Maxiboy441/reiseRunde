@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('startDate');
             $table->date('endDate');
             $table->boolean('timespan');
+            $table->integer('duration_in_days');
             $table->text('description');
             $table->string('vehicle', 255);
             $table->text('image_link');

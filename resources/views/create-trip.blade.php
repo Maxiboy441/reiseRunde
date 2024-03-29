@@ -8,7 +8,7 @@
         <div class="px-4 py-4">
             <h2 class="font-bold text-lg mb-4">Create a New Trip</h2>
             <div id="notification" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 hidden"></div>
-            <form method="POST" action="" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <form id="tripForm" method="POST" action="/trip" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 font-bold mb-2">Trip Name</label>
@@ -27,8 +27,14 @@
                     <input type="date" name="endDate" id="endDate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                 </div>
                 <div class="mb-4">
-                    <label for="timespan" class="block text-gray-700 font-bold mb-2">Exact Dates?</label>
-                    <input type="checkbox" name="timespan" id="timespan" class="mr-2">
+                    <label for="timespan" class="block text-gray-700 font-bold mb-2">
+                        <span class="mr-2">Timespan</span>
+                        <input type="checkbox" name="timespan" id="timespan" class="align-middle" @change="toggleDurationField">
+                    </label>
+                </div>
+                <div class="mb-4" id="durationField" style="display: none;">
+                    <label for="duration" class="block text-gray-700 font-bold mb-2">Duration (in days)</label>
+                    <input type="number" name="duration_in_days" id="duration" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" min="1">
                 </div>
                 <div class="mb-4">
                     <label for="description" class="block text-gray-700 font-bold mb-2">Description</label>
@@ -45,9 +51,7 @@
                     </select>
                 </div>
                 <div class="mb-4">
-                    {{--TODO: Use cloudanary or something like that--}}
-                    {{--TODO: Maybe add a tutorial how to copy good image urls--}}
-                    <label for="image_link" class="block text-gray-700 font-bold mb-2">Trip Image (jpg/png/... for good resolution)</label>
+                    <label for="image_link" class="block text-gray-700 font-bold mb-2">Trip Image Link (Google Image URL)</label>
                     <input type="text" name="image_link" id="image_link" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                 </div>
                 <div class="mb-4">
@@ -62,61 +66,143 @@
                     <label for="min_travelers" class="block text-gray-700 font-bold mb-2">Minimum Travelers</label>
                     <input type="number" name="min_travelers" id="min_travelers" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required min="1">
                 </div>
-                <div class="flex items-center justify-between mb-4">
-                    <x-button text="Erstellen" type="submit" class="ml-auto"></x-button>
-                </div>
+                <button type="submit">Test</button>
             </form>
         </div>
     </div>
 </main>
 
 <script>
-    function validateForm() {
-        var requiredFields = document.querySelectorAll('input[required], textarea[required], select[required]');
-        var missingFields = [];
+    const form = document.getElementById('tripForm');
+    const durationField = document.getElementById('durationField');
+    const timespanCheckbox = document.getElementById('timespan');
 
-        for (var i = 0; i < requiredFields.length; i++) {
-            if (requiredFields[i].value.trim() === '') {
-                missingFields.push(requiredFields[i].id);
+    function toggleDurationField() {
+        durationField.style.display = this.checked ? 'block' : 'none';
+    }
+
+    function validateForm(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const requiredFields = form.querySelectorAll('input[required], textarea[required], select[required]');
+        const missingFields = [...requiredFields].filter(field => field.value.trim() === '');
+
+        const startDate = new Date(form.startDate.value);
+        const endDate = new Date(form.endDate.value);
+        const minTravelers = parseInt(form.min_travelers.value);
+        const maxTravelers = parseInt(form.max_travelers.value);
+
+        if (timespanCheckbox.checked) {
+            const duration = parseInt(form.duration.value);
+            if (isNaN(duration) || duration < 1) {
+                displayNotification('Please enter a valid duration in days.');
+                return;
             }
         }
 
-        var startDate = new Date(document.getElementById('startDate').value);
-        var endDate = new Date(document.getElementById('endDate').value);
-        var minTravelers = parseInt(document.getElementById('min_travelers').value);
-        var maxTravelers = parseInt(document.getElementById('max_travelers').value);
-
-
         if (endDate < startDate) {
             displayNotification('The end date must be after the start date.');
-            return false;
+            return;
         }
 
         if (minTravelers > maxTravelers) {
             displayNotification('The minimum number of travelers must be less than or equal to the maximum number of travelers.');
-            return false;
+            return;
         }
 
         if (missingFields.length > 0) {
-            var fieldNames = missingFields.map(function(field) {
-                return document.querySelector('label[for="' + field + '"]').textContent.trim();
-            });
-            displayNotification('Please fill out the following fields: ' + fieldNames.join(', '));
-            return false;
+            const fieldNames = missingFields.map(field => field.labels[0].textContent.trim());
+            displayNotification(`Please fill out the following fields: ${fieldNames.join(', ')}`);
+            return;
         }
 
-        return true;
+        // Add the CSRF token to the form data
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const formData = new FormData(form);
+        formData.append('_token', csrfToken);
+
+        // Submit the form
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Handle successful form submission
+                    console.log('Form submitted successfully');
+                } else {
+                    // Handle form submission error
+                    console.error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
+    }function validateForm(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const requiredFields = form.querySelectorAll('input[required], textarea[required], select[required]');
+        const missingFields = [...requiredFields].filter(field => field.value.trim() === '');
+
+        const startDate = new Date(form.startDate.value);
+        const endDate = new Date(form.endDate.value);
+        const minTravelers = parseInt(form.min_travelers.value);
+        const maxTravelers = parseInt(form.max_travelers.value);
+
+        if (timespanCheckbox.checked) {
+            const duration = parseInt(form.duration.value);
+            if (isNaN(duration) || duration < 1) {
+                displayNotification('Please enter a valid duration in days.');
+                return;
+            }
+        }
+
+        if (endDate < startDate) {
+            displayNotification('The end date must be after the start date.');
+            return;
+        }
+
+        if (minTravelers > maxTravelers) {
+            displayNotification('The minimum number of travelers must be less than or equal to the maximum number of travelers.');
+            return;
+        }
+
+        if (missingFields.length > 0) {
+            const fieldNames = missingFields.map(field => field.labels[0].textContent.trim());
+            displayNotification(`Please fill out the following fields: ${fieldNames.join(', ')}`);
+            return;
+        }
+
+        // Submit the form
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Handle successful form submission
+                    console.log('Form submitted successfully');
+                } else {
+                    // Handle form submission error
+                    console.error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
     }
 
-    {{--TODO: Fix alert --}}
+
     function displayNotification(message) {
-        var notificationElement = document.getElementById('notification');
+        const notificationElement = document.getElementById('notification');
         notificationElement.textContent = message;
         notificationElement.classList.remove('hidden');
-        setTimeout(function() {
-            notificationElement.classList.add('hidden');
-        }, 5000); // Hide the notification after 5 seconds
+        setTimeout(() => notificationElement.classList.add('hidden'), 5000);
     }
+
+    form.addEventListener('submit', validateForm);
+    timespanCheckbox.addEventListener('change', toggleDurationField);
+    toggleDurationField.call(timespanCheckbox); // Initialize duration field visibility
 </script>
 </body>
 </html>

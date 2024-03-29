@@ -20,7 +20,8 @@ class Trip extends Model
         'trip_link',
         'name',
         'max_travelers',
-        'min_travelers'
+        'min_travelers',
+        'duration_in_days'
     ];
 
     /**

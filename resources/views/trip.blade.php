@@ -10,14 +10,13 @@
                 <h3 class="font-bold">Quick Check</h3>
                 <ul class="list-disc pl-4 space-y-2">
                     <li><i class="fas fa-flag"></i> {{$trip->destination}}</li>
-                    <li>Start: {{$trip->startDate->format('d F Y')}}</li>
-                    <li>Ende: {{$trip->endDate->format('d F Y')}}</li>
-                    <li>Exakt: @if($trip->timespan)
-                            Nein
-                        @else
-                            Ja
-                        @endif
-                    </li>
+                    @if($trip->timespan)
+                        <li>Duration: {{$trip->duration_in_days}} Days</li>
+                        <li>Between: {{$trip->startDate->format('d F Y')}} - {{$trip->endDate->format('d F Y')}}</li>
+                    @else
+                        <li>Start: {{$trip->startDate->format('d F Y')}}</li>
+                        <li>Ende: {{$trip->endDate->format('d F Y')}}</li>
+                    @endif
                     <li>Transportmittel:
                         @switch($trip->vehicle)
                             @case('car')
