@@ -38,6 +38,7 @@
                     <li>Min: {{$trip->min_travelers}}</li>
                     <li>Max: {{$trip->max_travelers}}</li>
                 </ul>
+                <x-button text="Join" link="/trip/{{$trip->id}}/join" type="" variant="primary"/>
             </div>
             <div class="w-3/4 px-4 py-4">
                 <div class="flex justify-between border-b border-gray-200 pb-4" id="head">

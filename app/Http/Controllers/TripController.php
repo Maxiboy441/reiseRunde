@@ -74,8 +74,14 @@ class TripController extends Controller
                 ->where('status', 'done');
         })->get();
 
+        $askingJoinedTrip = Trip::whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id)
+                ->where('type', '!=', 'owner')
+                ->where('status', 'asking');
+        })->get();
 
-        return view('my-trips', compact('openTripOwner','closedTripOwner','doneTripOwner','openJoinedTrip', 'closedJoinedTrip', 'doneJoinedTrip'));
+
+        return view('my-trips', compact('openTripOwner','closedTripOwner','doneTripOwner','openJoinedTrip', 'closedJoinedTrip', 'doneJoinedTrip','askingJoinedTrip'));
 
     }
 
@@ -104,5 +110,17 @@ class TripController extends Controller
         ]);
 
         return redirect('/trips')->with('success', 'Trip created successfully!');
+    }
+
+    public function joinTrip(Trip $trip){
+
+        DB::table('user_has_trip')->insert([
+            'user_id' => Auth::id(),
+            'trip_id' => $trip->id,
+            'type' => 'guest',
+            'status' => 'asking'
+        ]);
+
+        return redirect('trips');
     }
 }

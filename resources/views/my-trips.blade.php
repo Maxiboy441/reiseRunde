@@ -43,6 +43,11 @@
                 <h3>Done</h3>
                 <x-trip-list :trips="$doneTripOwner"/>
             @endif
+
+            @if(!$askingJoinedTrip->isEmpty())
+                <h3>Joined</h3>
+                <x-trip-list :trips="$askingJoinedTrip"/>
+            @endif
         </div>
     </div>
 </div>

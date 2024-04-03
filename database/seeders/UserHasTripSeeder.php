@@ -24,7 +24,7 @@ class UserHasTripSeeder extends Seeder
                 'user_id' => $user->random()->id,
                 'trip_id' => $trip->id,
                 'type' => Arr::random(['owner', 'guest']),
-                'status' => Arr::random(['done', 'closed', 'waiting'])
+                'status' => Arr::random(['done', 'closed', 'waiting','asking','invited'])
             ]);
         }
     }

@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/trips', [TripController::class, 'index'])->name('trip.index')->middleware('auth');
 Route::get('/trip/{trip}', [TripController::class, 'show'])->name('trip.show')->middleware('auth');
+Route::get('/trip/{trip}/join', [TripController::class, 'joinTrip'])->name('trip.join')->middleware('auth');
 Route::get('/trip', [TripController::class, 'create'])->name('trip.create')->middleware('auth');
 Route::post('/trip', [TripController::class, 'store'])->name('trips.store')->middleware('auth');
 Route::get('/mytrips', [TripController::class, 'indexMine'])->name('trip.mytrips')->middleware('auth');
