@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('destination', 255);
             $table->date('startDate');
             $table->date('endDate');
-            $table->boolean('timespan');
-            $table->integer('duration_in_days');
+            $table->boolean('timespan')->nullable();
+            $table->integer('duration_in_days')->nullable();
             $table->text('description');
             $table->string('vehicle', 255);
             $table->text('image_link');
