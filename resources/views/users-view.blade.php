@@ -87,7 +87,6 @@
             <table id="table-3" class="min-w-full divide-y divide-gray-200">
                 <tbody id="">
                 @foreach(Auth::user()->getFriendRequests() as $aUser)
-                    @php $aUser = App\Models\User::find($aUser)->first() @endphp
                     @if($aUser->id !== Auth::user()->sender_id)
                         <tr class="hover:bg-gray-100">
                             <td class="px-4 py-2">
