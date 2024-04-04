@@ -18,10 +18,11 @@ class TripController extends Controller
 
         $trips = Trip::whereDoesntHave('users', function ($query) use ($user_id) {
             $query->where('user_id', $user_id);
-        })->whereHas('users', function ($query) {
-            $query->where('status', 'waiting');
-        })->get();
-
+        })
+            ->whereHas('users', function ($query) {
+                $query->where('status', 'waiting');
+            })
+            ->paginate(9); // Paginate with 9 trips per page
 
         return view('trips', compact('trips'));
     }

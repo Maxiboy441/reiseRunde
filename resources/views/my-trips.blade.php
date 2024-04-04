@@ -13,39 +13,39 @@
     <div id="lists">
         <div id="list-1-container">
             @if(!$openTripOwner->isEmpty())
-                <h3>Open</h3>
+                <h3 class="mt-10 mb-5 font-bold text-3xl">Open</h3>
                 <x-trip-list :trips="$openTripOwner"/>
             @endif
 
             @if(!$closedTripOwner->isEmpty())
-                <h3>Closed</h3>
+                <h3 class="mt-10 mb-5 font-bold text-3xl">Closed</h3>
                 <x-trip-list :trips="$closedTripOwner"/>
             @endif
 
             @if(!$doneTripOwner->isEmpty())
-                <h3>Done</h3>
+                <h3 class="mt-10 mb-5 font-bold text-3xl">Done</h3>
                 <x-trip-list :trips="$doneTripOwner"/>
             @endif
         </div>
 
         <div id="list-2-container" class="hidden">
             @if(!$openJoinedTrip->isEmpty())
-                <h3>Open</h3>
+                <h3 class="mt-10 mb-5 font-bold text-3xl">Upcoming</h3>
                 <x-trip-list :trips="$openJoinedTrip"/>
             @endif
 
             @if(!$closedJoinedTrip->isEmpty())
-                <h3>Closed</h3>
+                <h3 class="mt-10 mb-5 font-bold text-3xl">Canceled</h3>
                 <x-trip-list :trips="$closedJoinedTrip"/>
             @endif
 
             @if(!$doneJoinedTrip->isEmpty())
-                <h3>Done</h3>
+                <h3 class="mt-10 mb-5 font-bold text-3xl">Done</h3>
                 <x-trip-list :trips="$doneTripOwner"/>
             @endif
 
             @if(!$askingJoinedTrip->isEmpty())
-                <h3>Joined</h3>
+                <h3 class="mt-10 mb-5 font-bold text-3xl">Joined (not accepted)</h3>
                 <x-trip-list :trips="$askingJoinedTrip"/>
             @endif
         </div>

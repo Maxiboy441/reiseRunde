@@ -12,8 +12,10 @@
                 <ul class="flex items-center mb-2">
                     <li class="text-gray-600 mr-2">
                         <i class="fas fa-user"></i>
-                        {{-- TODO: Add Name --}}
-                        Testname
+                        @php
+                            $owner = $trip->users()->wherePivot('type', 'owner')->first();
+                            echo $owner ? $owner->name : 'N/A';
+                        @endphp
                     </li>
                     <li class="text-gray-600 mr-2">
                         <i class="fas fa-flag"></i> {{ $trip->destination }}
