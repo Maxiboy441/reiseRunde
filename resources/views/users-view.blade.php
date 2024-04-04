@@ -27,9 +27,24 @@
                                 {{$aUser->name}}
                             </td>
                             <td class="px-4 py-2 text-right whitespace-nowrap pb-4">
-                                <x-button type="" text="Add"
-                                          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"/>
-                            </td>
+                                @if(Auth::user()->isFriendWith($aUser))
+                                    <a href="/friend/remove/{{$aUser->id}}"
+                                       class="px-4 py-2 bg-red-600 text-white font-bold rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Remove</a>
+                                @elseif(Auth::user()->hasFriendRequestFrom($aUser))
+                                    <a href="/friend/accept/{{$aUser->id}}"
+                                       class="px-4 py-2 bg-green-600 text-white font-bold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Accept</a>
+                                @elseif(Auth::user()->hasSentFriendRequestTo($aUser))
+                                    <a
+                                       class="px-4 py-2 bg-yellow-600 text-white font-bold rounded-md" >
+                                        Pending</a>
+                                @else
+                                    <a href="/friend/add/{{$aUser->id}}"
+                                        class="px-4 py-2 bg-indigo-600 text-white font-bold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >
+                                        add</a>
+                                @endif
+                                </td>
                         </tr>
                     @endif
                 @endforeach
@@ -43,21 +58,22 @@
                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                        placeholder="Search...">
             </div>
-            <table id="table-2" class="table-auto w-full border border-gray-300 shadow">
-                <thead>
-                <tr>
-                    <th class="px-4 py-2 border border-gray-300">Header 1</th>
-                    <th class="px-4 py-2 border border-gray-300">Header 2</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="px-4 py-2 border border-gray-300">Data 2.1</td>
-                    <td class="px-4 py-2 border border-gray-300">Data 2.2</td>
-                </tr><tr>
-                    <td class="px-4 py-2 border border-gray-300">Data 2.2</td>
-                    <td class="px-4 py-2 border border-gray-300">Data 2.2</td>
-                </tr>
+            <table id="table-2" class="min-w-full divide-y divide-gray-200">
+                <tbody id="">
+                @foreach(Auth::user()->getFriends() as $aUser)
+                    @if($aUser->id !== Auth::user()->id)
+                        <tr class="hover:bg-gray-100">
+                            <td class="px-4 py-2">
+                                {{$aUser->name}}
+                            </td>
+                            <td class="px-4 py-2 text-right whitespace-nowrap pb-4">
+                                <a href="/friend/remove/{{$aUser->id}}"
+                                   class="px-4 py-2 bg-red-600 text-white font-bold rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Remove</a>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -68,18 +84,26 @@
                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                        placeholder="Search...">
             </div>
-            <table id="table-3" class="table-auto w-full border border-gray-300 shadow">
-                <thead>
-                <tr>
-                    <th class="px-4 py-2 border border-gray-300">Header 1</th>
-                    <th class="px-4 py-2 border border-gray-300">Header 2</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="px-4 py-2 border border-gray-300">Data 3.1</td>
-                    <td class="px-4 py-2 border border-gray-300">Data 3.2</td>
-                </tr>
+            <table id="table-3" class="min-w-full divide-y divide-gray-200">
+                <tbody id="">
+                @foreach(Auth::user()->getFriendRequests() as $aUser)
+                    @php $aUser = App\Models\User::find($aUser)->first() @endphp
+                    @if($aUser->id !== Auth::user()->sender_id)
+                        <tr class="hover:bg-gray-100">
+                            <td class="px-4 py-2">
+                                {{$aUser->name}}
+                            </td>
+                            <td class="px-4 py-2 text-right whitespace-nowrap pb-4">
+                                <a href="/friend/deny/{{$aUser->id}}"
+                                   class="px-4 py-2 bg-red-600 text-white font-bold rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Deny</a>
+                                <a href="/friend/accept/{{$aUser->id}}"
+                                   class="px-4 py-2 bg-green-600 text-white font-bold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Accept</a>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
                 </tbody>
             </table>
         </div>

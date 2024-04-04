@@ -11,9 +11,32 @@ class FriendsController extends Controller
 {
     public function index()
     {
-        $user = Trip::all();
         $users = User::all();
 
-        return view('users-view', compact('user','users'));
+        return view('users-view', compact('users'));
+    }
+
+    public function add(int $id)
+    {
+        Auth::user()->befriend(User::find($id));
+        return back();
+    }
+
+    public function accept(int $id)
+    {
+        Auth::user()->acceptFriendRequest(User::find($id));
+        return back();
+    }
+
+    public function deny(int $id)
+    {
+        Auth::user()->denyFriendRequest(User::find($id));
+        return back();
+    }
+
+    public function remove(int $id)
+    {
+        Auth::user()->unfriend(User::find($id));
+        return back();
     }
 }

@@ -28,6 +28,12 @@ Route::post('/trip', [TripController::class, 'store'])->name('trips.store')->mid
 Route::get('/mytrips', [TripController::class, 'indexMine'])->name('trip.mytrips')->middleware('auth');
 
 
+Route::get('/friend/add/{id}',[FriendsController::class, 'add']);
+Route::get('/friend/accept/{id}',[FriendsController::class, 'accept']);
+Route::get('/friend/deny/{id}',[FriendsController::class, 'deny']);
+Route::get('/friend/remove/{id}',[FriendsController::class, 'remove']);
+
+
 
 Route::get('users', [FriendsController::class, 'index'])->name('user.index')->middleware('auth');
 
