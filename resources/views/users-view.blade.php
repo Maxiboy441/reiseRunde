@@ -89,13 +89,13 @@
                 @foreach(Auth::user()->getFriendRequests() as $aUser)
                         <tr class="hover:bg-gray-100">
                             <td class="px-4 py-2">
-                                {{$aUser->name}}
+                                {{ App\Models\User::find($aUser->sender_id)->name}}
                             </td>
                             <td class="px-4 py-2 text-right whitespace-nowrap pb-4">
-                                <a href="/friend/deny/{{$aUser->id}}"
+                                <a href="/friend/deny/{{$aUser->sender_id}}"
                                    class="px-4 py-2 bg-red-600 text-white font-bold rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     Deny</a>
-                                <a href="/friend/accept/{{$aUser->id}}"
+                                <a href="/friend/accept/{{$aUser->sender_id}}"
                                    class="px-4 py-2 bg-green-600 text-white font-bold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     Accept</a>
                             </td>
