@@ -41,7 +41,7 @@
 
             @if(!$doneJoinedTrip->isEmpty())
                 <h3 class="mt-10 mb-5 font-bold text-3xl">Done</h3>
-                <x-trip-list :trips="$doneTripOwner"/>
+                <x-trip-list :trips="$doneJoinedTrip"/>
             @endif
 
             @if(!$askingJoinedTrip->isEmpty())
