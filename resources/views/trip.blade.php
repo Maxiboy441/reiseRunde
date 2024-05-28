@@ -7,7 +7,16 @@
             <img src="{{$trip->image_link}}" alt="Trip Image"
                  class="w-full h-full object-cover rounded-lg mb-4 clip-path: inset(50% 0 0 0);">
             <div class="absolute bottom-4 right-4">
-                <x-button class="py-3" text="Join" link="/trip/{{$trip->id}}/join" type="" variant="primary"/>
+                @if(!$trip->users->contains(Auth::user()))
+                    <x-button class="py-3" text="Join" link="/trip/{{$trip->id}}/join" type="" variant="primary"/>
+                @else
+                    <td class="px-4 py-2 text-right whitespace-nowrap pb-4">
+                        {{-- TODO: Leave Route und Controller Action --}}
+                        <a href=""
+                           class="px-4 py-2 bg-red-600 text-white font-bold rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Leave</a>
+                    </td>
+                @endif
             </div>
         </div>
         <div class="flex">
