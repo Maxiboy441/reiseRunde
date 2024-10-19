@@ -33,6 +33,10 @@ Route::get('/friend/accept/{id}',[FriendsController::class, 'accept']);
 Route::get('/friend/deny/{id}',[FriendsController::class, 'deny']);
 Route::get('/friend/remove/{id}',[FriendsController::class, 'remove']);
 
+Route::get('/impressum', function () {
+    return view('impressum');
+})->name('impressum');
+
 
 
 Route::get('users', [FriendsController::class, 'index'])->name('user.index')->middleware('auth');
